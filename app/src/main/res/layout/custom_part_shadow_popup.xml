@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/qiji_bottom_select"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="15dp"
+        android:drawableLeft="@mipmap/tab_select"
+        android:gravity="center_vertical"
+        android:text="最新"
+        android:drawablePadding="8.5dp"
+        android:textColor="#FF969696"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#FF2B2D2E"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+
+    <TextView
+        android:paddingLeft="15dp"
+        android:id="@+id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:drawablePadding="8.5dp"
+        android:gravity="center_vertical"
+        android:text="首刷"
+        android:textColor="#FF969696"
+        android:textSize="14sp" />
+</LinearLayout>
