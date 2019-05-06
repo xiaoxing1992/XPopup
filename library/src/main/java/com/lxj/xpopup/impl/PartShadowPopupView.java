@@ -1,15 +1,12 @@
 package com.lxj.xpopup.impl;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
@@ -60,38 +57,56 @@ public abstract class PartShadowPopupView extends AttachPopupView {
         Rect rect = new Rect(locations[0], locations[1], locations[0] + popupInfo.getAtView().getMeasuredWidth(),
                 locations[1] + popupInfo.getAtView().getMeasuredHeight());
         int centerY = rect.top + rect.height()/2;
-        if(centerY > getMeasuredHeight()/2){
-            // 说明atView在Window下半部分，PartShadow应该显示在它上方，计算atView之上的高度
-            params.height = rect.top;
-            isShowUp = true;
-            getPopupContentView().setTranslationY(-defaultOffsetY);
+//        if(centerY > getMeasuredHeight()/2){
+//            // 说明atView在Window下半部分，PartShadow应该显示在它上方，计算atView之上的高度
+//            params.height = rect.top;
+//            isShowUp = true;
+//            getPopupContentView().setTranslationY(-defaultOffsetY);
+//
+//            // 同时自定义的impl View应该Gravity居于底部
+//            View implView = ((ViewGroup)getPopupContentView()).getChildAt(0);
+//            FrameLayout.LayoutParams implParams = (LayoutParams) implView.getLayoutParams();
+//            implParams.gravity = Gravity.BOTTOM;
+//            if(getMaxHeight()!=0)
+//                implParams.height = Math.min(implView.getMeasuredHeight(), getMaxHeight());
+//            implView.setLayoutParams(implParams);
+//
+//        } else {
+//            // atView在上半部分，PartShadow应该显示在它下方，计算atView之下的高度
+//            params.height = getMeasuredHeight() - rect.bottom;
+//            // 防止伸到导航栏下面
+//            if(XPopupUtils.isNavBarVisible(getContext())){
+//                params.height -= XPopupUtils.getNavBarHeight();
+//            }
+//            isShowUp = false;
+//            getPopupContentView().setTranslationY(rect.bottom + defaultOffsetY);
+//
+//            // 同时自定义的impl View应该Gravity居于顶部
+//            View implView = ((ViewGroup)getPopupContentView()).getChildAt(0);
+//            FrameLayout.LayoutParams implParams = (LayoutParams) implView.getLayoutParams();
+//            implParams.gravity = Gravity.TOP;
+//            if(getMaxHeight()!=0)
+//                implParams.height = Math.min(implView.getMeasuredHeight(), getMaxHeight());
+//            implView.setLayoutParams(implParams);
+//        }
 
-            // 同时自定义的impl View应该Gravity居于底部
-            View implView = ((ViewGroup)getPopupContentView()).getChildAt(0);
-            FrameLayout.LayoutParams implParams = (LayoutParams) implView.getLayoutParams();
-            implParams.gravity = Gravity.BOTTOM;
-            if(getMaxHeight()!=0)
-                implParams.height = Math.min(implView.getMeasuredHeight(), getMaxHeight());
-            implView.setLayoutParams(implParams);
-
-        } else {
-            // atView在上半部分，PartShadow应该显示在它下方，计算atView之下的高度
-            params.height = getMeasuredHeight() - rect.bottom;
-            // 防止伸到导航栏下面
-            if(XPopupUtils.isNavBarVisible(getContext())){
-                params.height -= XPopupUtils.getNavBarHeight();
-            }
-            isShowUp = false;
-            getPopupContentView().setTranslationY(rect.bottom + defaultOffsetY);
-
-            // 同时自定义的impl View应该Gravity居于顶部
-            View implView = ((ViewGroup)getPopupContentView()).getChildAt(0);
-            FrameLayout.LayoutParams implParams = (LayoutParams) implView.getLayoutParams();
-            implParams.gravity = Gravity.TOP;
-            if(getMaxHeight()!=0)
-                implParams.height = Math.min(implView.getMeasuredHeight(), getMaxHeight());
-            implView.setLayoutParams(implParams);
+        // atView在上半部分，PartShadow应该显示在它下方，计算atView之下的高度
+        params.height = getMeasuredHeight() - rect.bottom;
+        // 防止伸到导航栏下面
+        if(XPopupUtils.isNavBarVisible(getContext())){
+            params.height -= XPopupUtils.getNavBarHeight();
         }
+        isShowUp = false;
+        getPopupContentView().setTranslationY(rect.bottom + defaultOffsetY);
+
+        // 同时自定义的impl View应该Gravity居于顶部
+        View implView = ((ViewGroup)getPopupContentView()).getChildAt(0);
+        FrameLayout.LayoutParams implParams = (LayoutParams) implView.getLayoutParams();
+        implParams.gravity = Gravity.TOP;
+        if(getMaxHeight()!=0)
+            implParams.height = Math.min(implView.getMeasuredHeight(), getMaxHeight());
+        implView.setLayoutParams(implParams);
+
         getPopupContentView().setLayoutParams(params);
 
         attachPopupContainer.setOnClickOutsideListener(new OnClickOutsideListener() {
