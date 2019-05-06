@@ -17,16 +17,12 @@ import android.support.transition.TransitionSet;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.lxj.xpermission.PermissionConstants;
-import com.lxj.xpermission.XPermission;
 import com.lxj.xpopup.R;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.enums.PopupStatus;
@@ -339,19 +335,7 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
     @Override
     public void onClick(View v) {
         if(v==tv_save){
-            //check permission
-            XPermission.create(getContext(), PermissionConstants.STORAGE)
-                    .callback(new XPermission.SimpleCallback() {
-                        @Override
-                        public void onGranted() {
-                            //save bitmap to album.
-                            XPopupUtils.saveBmpToAlbum(getContext(), imageLoader, urls.get(position));
-                        }
-                        @Override
-                        public void onDenied() {
-                            Toast.makeText(getContext(), "没有保存权限，保存功能无法使用！", Toast.LENGTH_SHORT).show();
-                        }
-                    }).request();
+            XPopupUtils.saveBmpToAlbum(getContext(), imageLoader, urls.get(position));
         }
     }
 
