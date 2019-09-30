@@ -27,7 +27,7 @@ public class CustomAnimatorDemo extends BaseFragment {
         public void onClick(View v) {
             new XPopup.Builder(getContext())
                     .customAnimator(new RotateAnimator())
-                    .asConfirm("演示自定义动画", "当前的动画是一个自定义的旋转动画，无论是自定义弹窗还是自定义动画，已经被设计得非常简单；这个动画代码只有6行即可完成！", null)
+                    .asConfirm("演示自定义动画", "当前的动画是一个自定义的旋转动画，无论是自定义弹窗还是自定义动画，已经被设计得非常简单；这个动画代码只有6行即可完成！",null,null, null)
                     .show();
         }
     };

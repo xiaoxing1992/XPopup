@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;
 import com.lxj.xpopup.enums.PopupAnimation;
-import com.lxj.xpopup.enums.PopupPosition;
 import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.lxj.xpopup.interfaces.OnSelectListener;
 
@@ -22,6 +21,7 @@ import com.lxj.xpopup.interfaces.OnSelectListener;
  */
 public class DemoActivity extends AppCompatActivity {
     EditText editText;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,23 +48,27 @@ public class DemoActivity extends AppCompatActivity {
                 });
         editText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().isEmpty()){
+                if (s.toString().isEmpty()) {
                     popupView.dismiss();
                     return;
                 }
-                if(popupView.isDismiss()){
+                if (popupView.isDismiss()) {
                     popupView.show();
                 }
             }
         });
     }
 
-    public void showMultiPopup(){
+    public void showMultiPopup() {
         final BasePopupView loadingPopup = new XPopup.Builder(this).asLoading();
         loadingPopup.show();
         new XPopup.Builder(DemoActivity.this)
@@ -72,7 +76,7 @@ public class DemoActivity extends AppCompatActivity {
                 .asBottomList("haha", new String[]{"点我显示弹窗", "点我显示弹窗", "点我显示弹窗", "点我显示弹窗"}, new OnSelectListener() {
                     @Override
                     public void onSelect(int position, String text) {
-                        new XPopup.Builder(DemoActivity.this).asConfirm("测试", "aaaa", new OnConfirmListener() {
+                        new XPopup.Builder(DemoActivity.this).asConfirm("测试", "aaaa", null, null, new OnConfirmListener() {
                             @Override
                             public void onConfirm() {
                                 loadingPopup.dismiss();

@@ -17,7 +17,6 @@ import com.lxj.xpopupdemo.custom.CustomAttachPopup2;
 import com.lxj.xpopupdemo.custom.CustomDrawerPopupView;
 import com.lxj.xpopupdemo.custom.CustomEditTextBottomPopup;
 import com.lxj.xpopupdemo.custom.CustomFullScreenPopup;
-import com.lxj.xpopupdemo.custom.ListDrawerPopupView;
 import com.lxj.xpopupdemo.custom.ZhihuCommentPopup;
 
 /**
@@ -90,7 +89,7 @@ public class QuickStartDemo extends BaseFragment implements View.OnClickListener
                             public void onDismiss() {
                                 Log.e("tag", "onDismiss");
                             }
-                        }).asConfirm("我是标题", "床前明月光，疑是地上霜；举头望明月，低头思故乡。",
+                        }).asConfirm("我是标题", "床前明月光，疑是地上霜；举头望明月，低头思故乡。","取消了","继续了",
                         new OnConfirmListener() {
                             @Override
                             public void onConfirm() {

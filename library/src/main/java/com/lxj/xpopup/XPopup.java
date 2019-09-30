@@ -296,22 +296,24 @@ public class XPopup {
          * @param isHideCancel    是否隐藏取消按钮
          * @return
          */
-        public ConfirmPopupView asConfirm(String title, String content, OnConfirmListener confirmListener, OnCancelListener cancelListener, boolean isHideCancel) {
+        public ConfirmPopupView asConfirm(String title, String content, String confirmContent,String cancelContent,OnConfirmListener confirmListener, OnCancelListener cancelListener, boolean isHideCancel) {
             popupType(PopupType.Center);
             ConfirmPopupView popupView = new ConfirmPopupView(this.context);
             popupView.setTitleContent(title, content, null);
+            popupView.setConfirmContent(confirmContent);
+            popupView.setCancelContent(cancelContent);
             popupView.setListener(confirmListener, cancelListener);
             if (isHideCancel) popupView.hideCancelBtn();
             popupView.popupInfo = this.popupInfo;
             return popupView;
         }
 
-        public ConfirmPopupView asConfirm(String title, String content, OnConfirmListener confirmListener, OnCancelListener cancelListener) {
-            return asConfirm(title, content, confirmListener, cancelListener, false);
+        public ConfirmPopupView asConfirm(String title, String content, String confirmContent,String cancelContent, OnConfirmListener confirmListener, OnCancelListener cancelListener) {
+            return asConfirm(title, content, confirmContent,cancelContent,confirmListener, cancelListener, false);
         }
 
-        public ConfirmPopupView asConfirm(String title, String content, OnConfirmListener confirmListener) {
-            return asConfirm(title, content, confirmListener, null);
+        public ConfirmPopupView asConfirm(String title, String content,String confirmContent,String cancelContent,OnConfirmListener confirmListener) {
+            return asConfirm(title, content, confirmContent,cancelContent,confirmListener, null);
         }
 
         /**
