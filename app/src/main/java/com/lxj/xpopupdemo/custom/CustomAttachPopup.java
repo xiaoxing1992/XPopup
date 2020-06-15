@@ -1,9 +1,11 @@
 package com.lxj.xpopupdemo.custom;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
 import com.lxj.xpopup.core.HorizontalAttachPopupView;
 import com.lxj.xpopupdemo.R;
 import com.lxj.xpopupdemo.XPopupApp;
